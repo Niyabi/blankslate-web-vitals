@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const IgnoreEmitPlugin = require('ignore-emit-webpack-plugin');
 
 let mode = "development";
 
@@ -18,6 +19,7 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, "public"),
+        filename: 'js/[name].js',
         assetModuleFilename: "images/[hash][ext][query]",
     },
 
@@ -49,7 +51,10 @@ module.exports = {
 
     plugins: [
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'styles/[name].css'
+        }),
+        new IgnoreEmitPlugin(/theme_css.*\.js$/)
     ],
 
     resolve: {
