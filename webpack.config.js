@@ -12,8 +12,8 @@ module.exports = {
     mode: mode,
 
     entry: {
-        theme_js_index: './src/js/index.js',
-        theme_css_index: "./src/styles/index.scss",
+        theme_js_index: path.resolve(__dirname, "src/js/index.js"),
+        theme_css_index: path.resolve(__dirname, "src/styles/index.scss"),
     },
 
     output: {
