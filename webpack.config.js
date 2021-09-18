@@ -2,6 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const IgnoreEmitPlugin = require('ignore-emit-webpack-plugin');
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 let mode = "development";
 
@@ -41,15 +43,10 @@ module.exports = {
         //output directory
         path: path.resolve(__dirname, "public"),
         filename: 'js/[name].js',
-        assetModuleFilename: "images/[hash][ext][query]",
     },
 
     module: {
         rules: [
-            {
-                test: /\.(png|jpe?g|gif|svg)/i,
-                type: "asset/resource",
-            },
             {
                 test: /\.(s[ac]|c)ss$/i,
                 exclude: /node_modules/,
@@ -85,8 +82,55 @@ module.exports = {
             filename: 'styles/[name].css'
         }),
         new IgnoreEmitPlugin(/theme_css.*\.js$/),
+        new IgnoreEmitPlugin(/images\.js$/),
+        new ImageMinimizerPlugin({
+            minimizerOptions: {
+                // Lossless optimization with custom option
+                // Feel free to experiment with options for better result for you
+                plugins: [
+                    ["gifsicle", { 
+                        interlaced: true ,
+                        optimizationLevel: 3
+                    }],
+                    ["mozjpeg", { 
+                        progressive: true,
+                        quality: 80, 
+                    }],
+                    ["pngquant", { quality: [0.7, 0.8] }],
+                    // Svgo configuration here https://github.com/svg/svgo#configuration
+                    ["svgo", { }],
+                ],
+            },
+        }),
         new CopyPlugin({
             patterns: [
+                // images
+                {
+                    from: "./src/images/*.png",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/images/*.jpg",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/images/*.jpeg",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/images/*.gif",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/images/*.svg",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                // fonts
                 {
                     from: "./src/fonts/*.otf",
                     to: "fonts/[name][ext]",
@@ -110,7 +154,6 @@ module.exports = {
                 {
                     from: "./src/fonts/*.woff2",
                     to: "fonts/[name][ext]",
-                    noErrorOnMissing: true,
                 }
             ]
         }),
