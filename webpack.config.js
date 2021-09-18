@@ -52,6 +52,7 @@ module.exports = {
             },
             {
                 test: /\.(s[ac]|c)ss$/i,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
