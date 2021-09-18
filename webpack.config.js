@@ -14,8 +14,10 @@ module.exports = {
 
     entry: {
         //output filename: path/to/source/file
+
         //theme js files
         theme_js_index: path.resolve(__dirname, "src/js/index.js"),
+        
         //theme critical js files
         theme_js_critical_index: path.resolve(__dirname, "src/js/critical/critcal_index.js"),
 
@@ -24,9 +26,11 @@ module.exports = {
         //theme critical ts files
         //theme_js_critical_index: path.resolve(__dirname, "src/ts/critical/critical_index.ts"),
 
+        //theme css files
         theme_css_index: path.resolve(__dirname, "src/styles/index.scss"),
         theme_css_blog: path.resolve(__dirname, "src/styles/blog.scss"),
         theme_css_post: path.resolve(__dirname, "src/styles/post.scss"),
+
         //theme critical css files
         theme_css_critical_index: path.resolve(__dirname, "src/styles/critical_styles/critical_index.scss"),
         theme_css_critical_blog: path.resolve(__dirname, "src/styles/critical_styles/critical_blog.scss"),
