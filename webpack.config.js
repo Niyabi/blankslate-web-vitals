@@ -84,7 +84,36 @@ module.exports = {
             //output css files to styles folder
             filename: 'styles/[name].css'
         }),
-        new IgnoreEmitPlugin(/theme_css.*\.js$/)
+        new IgnoreEmitPlugin(/theme_css.*\.js$/),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: "./src/fonts/*.otf",
+                    to: "fonts/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/fonts/*.ttf",
+                    to: "fonts/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/fonts/*.eot",
+                    to: "fonts/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/fonts/*.woff",
+                    to: "fonts/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/fonts/*.woff2",
+                    to: "fonts/[name][ext]",
+                    noErrorOnMissing: true,
+                }
+            ]
+        }),
     ],
 
     resolve: {
