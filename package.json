@@ -11,6 +11,7 @@
     "@babel/preset-env": "^7.15.4",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
     "ignore-emit-webpack-plugin": "^2.0.6",
     "image-minimizer-webpack-plugin": "^2.2.0",
@@ -24,6 +25,7 @@
     "postcss-preset-env": "^6.7.0",
     "sass": "^1.39.0",
     "sass-loader": "^12.1.0",
+    "svgo": "^2.6.1",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
   }

@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const IgnoreEmitPlugin = require('ignore-emit-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const { extendDefaultPlugins } = require("svgo");
+const CopyPlugin = require("copy-webpack-plugin");
 
 let mode = "development";
 
@@ -17,21 +17,15 @@ module.exports = {
     entry: {
         theme_js_index: path.resolve(__dirname, "src/js/index.js"),
         theme_css_index: path.resolve(__dirname, "src/styles/index.scss"),
-        images: "./src/images/58103072_p0.jpg",
     },
 
     output: {
         path: path.resolve(__dirname, "public"),
         filename: 'js/[name].js',
-        assetModuleFilename: "images/[name][ext]",
     },
 
     module: {
         rules: [
-            {
-                test: /\.(png|jpe?g|gif|svg)/i,
-                type: "asset/resource",
-            },
             {
                 test: /\.(s[ac]|c)ss$/i,
                 use: [
@@ -64,32 +58,48 @@ module.exports = {
                 // Lossless optimization with custom option
                 // Feel free to experiment with options for better result for you
                 plugins: [
-                    ["gifsicle", { interlaced: true }],
+                    ["gifsicle", { 
+                        interlaced: true ,
+                        optimizationLevel: 3
+                    }],
                     ["mozjpeg", { 
                         progressive: true,
                         quality: 80, 
                     }],
                     ["pngquant", { quality: [0.7, 0.8] }],
                     // Svgo configuration here https://github.com/svg/svgo#configuration
-                    [
-                        "svgo",
-                        {
-                            plugins: extendDefaultPlugins([
-                                {
-                                    name: "removeViewBox",
-                                    active: false,
-                                },
-                                {
-                                    name: "addAttributesToSVGElement",
-                                    params: {
-                                        attributes: [{ xmlns: "http://www.w3.org/2000/svg" }],
-                                    },
-                                },
-                            ]),
-                        },
-                    ],
+                    ["svgo", { }],
                 ],
             },
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: "./src/images/*.png",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/images/*.jpg",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/images/*.jpeg",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/images/*.gif",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                },
+                {
+                    from: "./src/images/*.svg",
+                    to: "images/[name][ext]",
+                    noErrorOnMissing: true,
+                }
+            ]
         }),
     ],
 
