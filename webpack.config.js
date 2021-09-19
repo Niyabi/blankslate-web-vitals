@@ -21,7 +21,7 @@ module.exports = {
         theme_js_index: path.resolve(__dirname, "src/js/index.js"),
         
         //theme critical js files
-        theme_js_critical_index: path.resolve(__dirname, "src/js/critical/critcal_index.js"),
+        theme_js_critical_index: path.resolve(__dirname, "src/js/critical/critical_index.js"),
 
         //theme ts files
         //theme_js_index: path.resolve(__dirname, "src/ts/index.ts"),
@@ -153,6 +153,7 @@ module.exports = {
                 {
                     from: "./src/fonts/*.woff2",
                     to: "fonts/[name][ext]",
+                    noErrorOnMissing: true,
                 }
             ]
         }),
