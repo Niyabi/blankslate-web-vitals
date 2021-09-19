@@ -52,7 +52,6 @@ module.exports = {
             filename: 'styles/[name].css'
         }),
         new IgnoreEmitPlugin(/theme_css.*\.js$/),
-        new IgnoreEmitPlugin(/images\.js$/),
         new ImageMinimizerPlugin({
             minimizerOptions: {
                 // Lossless optimization with custom option
