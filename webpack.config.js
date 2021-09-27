@@ -18,25 +18,27 @@ module.exports = {
         //output filename: path/to/source/file
 
         //theme js files
-        theme_js_index: path.resolve(__dirname, "src/js/index.js"),
+        theme_js_index: "./src/js/index.js",
+        // You can add multiple files to one entry
+        // theme_js_index: ["./src/js/index.js", "./src/js/test.js"],
         
         //theme critical js files
-        theme_js_critical_index: path.resolve(__dirname, "src/js/critical/critical_index.js"),
+        theme_js_critical_index: "./src/js/critical/critical_index.js",
 
         //theme ts files
-        //theme_js_index: path.resolve(__dirname, "src/ts/index.ts"),
+        //theme_js_index: "./src/ts/index.ts",
         //theme critical ts files
-        //theme_js_critical_index: path.resolve(__dirname, "src/ts/critical/critical_index.ts"),
+        //theme_js_critical_index: "./src/ts/critical/critical_index.ts",
 
         //theme css files
-        theme_css_index: path.resolve(__dirname, "src/styles/index.scss"),
-        theme_css_blog: path.resolve(__dirname, "src/styles/blog.scss"),
-        theme_css_post: path.resolve(__dirname, "src/styles/post.scss"),
+        theme_css_index: "./src/styles/index.scss",
+        theme_css_blog: "./src/styles/blog.scss",
+        theme_css_post: "./src/styles/post.scss",
 
         //theme critical css files
-        theme_css_critical_index: path.resolve(__dirname, "src/styles/critical_styles/critical_index.scss"),
-        theme_css_critical_blog: path.resolve(__dirname, "src/styles/critical_styles/critical_blog.scss"),
-        theme_css_critical_post: path.resolve(__dirname, "src/styles/critical_styles/critical_post.scss"),
+        theme_css_critical_index: "./src/styles/critical_styles/critical_index.scss",
+        theme_css_critical_blog: "./src/styles/critical_styles/critical_blog.scss",
+        theme_css_critical_post: "./src/styles/critical_styles/critical_post.scss",
     },
 
     output: {
